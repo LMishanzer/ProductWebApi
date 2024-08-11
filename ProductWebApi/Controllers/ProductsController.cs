@@ -5,11 +5,17 @@ using ProductLib.Services;
 
 namespace ProductWebApi.Controllers;
 
+/// <summary>
+/// Controller for handling product-related operations.
+/// </summary>
 [Route("/api/v1/products")]
+[Consumes("application/json")]
+[Produces("application/json")]
 public class ProductsController : ControllerBase
 {
     private readonly IProductService _productService;
-
+    
+    /// <inheritdoc />
     public ProductsController(IProductService productService)
     {
         _productService = productService;
