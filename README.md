@@ -12,6 +12,11 @@ project directory or run the project from your IDE.
 After you start the application, you should be able to access it locally on 
 **http://localhost:5255**
 
+## Database
+
+You can create Products DB table using script DbTableDefinition.sql
+in the solution root folder.
+
 ## Documentation
 
 You can find a complete API documentation on **http://localhost:5255/swagger**
