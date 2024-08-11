@@ -5,7 +5,7 @@ using ProductLib.Services;
 
 namespace ProductWebApi.Controllers;
 
-[Route("/api/v1/[controller]")]
+[Route("/api/v1/products")]
 public class ProductsController : ControllerBase
 {
     private readonly IProductService _productService;
@@ -16,6 +16,7 @@ public class ProductsController : ControllerBase
     }
 
     [HttpGet]
+    [ProducesResponseType<List<ProductDto>>(StatusCodes.Status200OK)]
     public async Task<IActionResult> GetAll()
     {
         var allProducts = await _productService.GetAllProducts();
@@ -24,7 +25,8 @@ public class ProductsController : ControllerBase
         return Ok(allDtoProducts);
     }
     
-    [HttpGet("/api/v2/[controller]")]
+    [HttpGet("/api/v2/products")]
+    [ProducesResponseType<List<ProductDto>>(StatusCodes.Status200OK)]
     public async Task<IActionResult> GetPage([FromQuery] int? page, [FromQuery] int? pageSize)
     {
         var allProducts = await _productService.GetPage(page, pageSize);
@@ -34,6 +36,8 @@ public class ProductsController : ControllerBase
     }
     
     [HttpGet("{id:guid}")]
+    [ProducesResponseType<ProductDto>(StatusCodes.Status200OK)]
+    [ProducesResponseType(StatusCodes.Status404NotFound)]
     public async Task<IActionResult> GetById([FromRoute] Guid id)
     {
         var productId = new ProductId(id);
@@ -43,6 +47,7 @@ public class ProductsController : ControllerBase
     }
 
     [HttpPost]
+    [ProducesResponseType<ProductDto>(StatusCodes.Status201Created)]
     public async Task<IActionResult> Create([FromBody] CreateProductDto productDto)
     {
         if (!ModelState.IsValid)
@@ -53,6 +58,8 @@ public class ProductsController : ControllerBase
     }
 
     [HttpPatch("{id:guid}")]
+    [ProducesResponseType(StatusCodes.Status204NoContent)]
+    [ProducesResponseType(StatusCodes.Status404NotFound)]
     public async Task<IActionResult> UpdateDescription([FromRoute] Guid id, [FromBody] UpdateProductDto updateProductDto)
     {
         if (!ModelState.IsValid)
