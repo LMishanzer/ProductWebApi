@@ -5,7 +5,7 @@ using ProductLib.Services;
 
 namespace ProductWebApi.Controllers;
 
-[Route("[controller]")]
+[Route("/api/v1/[controller]")]
 public class ProductsController : ControllerBase
 {
     private readonly IProductService _productService;
