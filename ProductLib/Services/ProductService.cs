@@ -15,6 +15,13 @@ public class ProductService : IProductService
     }
 
     public async Task<List<Product>> GetAllProducts() => await _productDbContext.Products.AsNoTracking().ToListAsync();
+    public async Task<List<Product>> GetPage(int? page, int? pageSize)
+    {
+        var currentPage = page ?? 0;
+        var currentPageSize = pageSize ?? 10;
+        
+        return await _productDbContext.Products.AsNoTracking().Skip(currentPage * currentPageSize).Take(currentPageSize).ToListAsync();
+    }
 
     public async Task<Product?> GetProductById(ProductId productId) => await _productDbContext.Products.AsNoTracking().FirstOrDefaultAsync(p => p.Id == productId);
 

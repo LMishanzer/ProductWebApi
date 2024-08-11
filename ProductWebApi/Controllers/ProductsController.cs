@@ -24,6 +24,15 @@ public class ProductsController : ControllerBase
         return Ok(allDtoProducts);
     }
     
+    [HttpGet("/api/v2/[controller]")]
+    public async Task<IActionResult> GetPage([FromQuery] int? page, [FromQuery] int? pageSize)
+    {
+        var allProducts = await _productService.GetPage(page, pageSize);
+        var allDtoProducts = allProducts.Select(p => new ProductDto(p));
+
+        return Ok(allDtoProducts);
+    }
+    
     [HttpGet("{id:guid}")]
     public async Task<IActionResult> GetById([FromRoute] Guid id)
     {
