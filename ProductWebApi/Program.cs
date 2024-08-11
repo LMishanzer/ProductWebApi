@@ -14,11 +14,20 @@ builder.Services.AddTransient<IProductService, ProductService>();
 
 var app = builder.Build();
 
-if (app.Environment.IsDevelopment())
+if (!app.Environment.IsDevelopment())
 {
-    app.UseSwagger();
-    app.UseSwaggerUI();
+    app.UseExceptionHandler(exceptionHandlerApp =>
+    {
+        exceptionHandlerApp.Run(async context =>
+        {
+            context.Response.StatusCode = StatusCodes.Status500InternalServerError;
+            await context.Response.WriteAsync("Internal server error. Please contact the administrator.");
+        });
+    });
 }
+
+app.UseSwagger();
+app.UseSwaggerUI();
 
 app.MapControllers();
 
