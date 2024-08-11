@@ -4,6 +4,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ProductWebApi", "ProductWeb
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ProductLib", "ProductLib\ProductLib.csproj", "{778966BF-15E3-4614-8E4E-BD2BA2826F98}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ProductLibTest", "ProductLibTest\ProductLibTest.csproj", "{97F88F10-0385-4655-8F42-AC4D6C501472}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -18,5 +20,9 @@ Global
 		{778966BF-15E3-4614-8E4E-BD2BA2826F98}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{778966BF-15E3-4614-8E4E-BD2BA2826F98}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{778966BF-15E3-4614-8E4E-BD2BA2826F98}.Release|Any CPU.Build.0 = Release|Any CPU
+		{97F88F10-0385-4655-8F42-AC4D6C501472}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{97F88F10-0385-4655-8F42-AC4D6C501472}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{97F88F10-0385-4655-8F42-AC4D6C501472}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{97F88F10-0385-4655-8F42-AC4D6C501472}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal
