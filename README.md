@@ -10,7 +10,11 @@ To run the application execute command `dotnet run` inside the ProductWebApi
 project directory or run the project from your IDE.
 
 After you start the application, you should be able to access it locally on 
-**http://localhost:5255** 
+**http://localhost:5255**
+
+## Documentation
+
+You can find a complete API documentation on **http://localhost:5255/swagger**
 
 ## Run tests
 
