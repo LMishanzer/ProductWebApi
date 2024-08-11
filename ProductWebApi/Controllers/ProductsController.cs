@@ -15,6 +15,10 @@ public class ProductsController : ControllerBase
         _productService = productService;
     }
 
+    /// <summary>
+    /// Retrieves a list of all products.
+    /// </summary>
+    /// <returns>A list of products</returns>
     [HttpGet]
     [ProducesResponseType<List<ProductDto>>(StatusCodes.Status200OK)]
     public async Task<IActionResult> GetAll()
@@ -24,7 +28,13 @@ public class ProductsController : ControllerBase
 
         return Ok(allDtoProducts);
     }
-    
+
+    /// <summary>
+    /// Retrieves a page of products.
+    /// </summary>
+    /// <param name="page">The page number</param>
+    /// <param name="pageSize">The number of products per page</param>
+    /// <returns>A list of products</returns>
     [HttpGet("/api/v2/products")]
     [ProducesResponseType<List<ProductDto>>(StatusCodes.Status200OK)]
     public async Task<IActionResult> GetPage([FromQuery] int? page, [FromQuery] int? pageSize)
@@ -34,7 +44,12 @@ public class ProductsController : ControllerBase
 
         return Ok(allDtoProducts);
     }
-    
+
+    /// <summary>
+    /// Retrieves a product by its ID.
+    /// </summary>
+    /// <param name="id">The ID of the product</param>
+    /// <returns>The product with the specified ID, or null if not found</returns>
     [HttpGet("{id:guid}")]
     [ProducesResponseType<ProductDto>(StatusCodes.Status200OK)]
     [ProducesResponseType(StatusCodes.Status404NotFound)]
@@ -46,6 +61,11 @@ public class ProductsController : ControllerBase
         return product != null ? Ok(new ProductDto(product)) : NotFound();
     }
 
+    /// <summary>
+    /// Creates a new product.
+    /// </summary>
+    /// <param name="productDto">The data for the new product</param>
+    /// <returns>The ID of the created product</returns>
     [HttpPost]
     [ProducesResponseType<ProductDto>(StatusCodes.Status201Created)]
     public async Task<IActionResult> Create([FromBody] CreateProductDto productDto)
@@ -57,6 +77,13 @@ public class ProductsController : ControllerBase
         return Created(productId.Value.ToString(), new { Id = productId.Value });
     }
 
+    /// <summary>
+    /// Updates the description of a product.
+    /// </summary>
+    /// <param name="id">The ID of the product</param>
+    /// <param name="updateProductDto">The updated product description</param>
+    /// <returns>Returns the HTTP status code 204 No Content if the product was found and the description was updated,
+    /// or returns the HTTP status code 404 Not Found if the product was not found</returns>
     [HttpPatch("{id:guid}")]
     [ProducesResponseType(StatusCodes.Status204NoContent)]
     [ProducesResponseType(StatusCodes.Status404NotFound)]
